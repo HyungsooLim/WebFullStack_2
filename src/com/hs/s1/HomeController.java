@@ -15,28 +15,56 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/HomeController")
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public HomeController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public HomeController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		String contextPath = request.getContextPath();
+		String encoding = request.getCharacterEncoding();
+		String method = request.getMethod();
+		String pathInfo = request.getPathInfo();
+		StringBuffer url = request.getRequestURL();
+		String uri = request.getRequestURI();
+		String servletPath = request.getServletPath();
+		String name = request.getParameter("파라미터이름");
+
+		System.out.println("ContextPath : " + contextPath);
+		System.out.println("Encoding : " + encoding);
+		System.out.println("Method : " + method);
+		System.out.println("PathInfo : " + pathInfo);
+		System.out.println("URL : " + url.toString());
+		System.out.println("URI : " + uri);
+		System.out.println("ServletPath : "+servletPath);
+
+		String id = request.getParameter("id");
+		String age = request.getParameter("age");
+
+		System.out.println(id);
+		System.out.println(age);
+
 		RequestDispatcher view = request.getRequestDispatcher("./index.jsp");
 		view.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
