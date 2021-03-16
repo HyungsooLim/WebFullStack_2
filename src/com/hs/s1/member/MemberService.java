@@ -40,7 +40,7 @@ public class MemberService {
 			MemberDTO memberDTO = new MemberDTO();
 			memberDTO.setId(request.getParameter("id"));
 			memberDTO.setPw(request.getParameter("pw"));
-			memberDTO = memberDAO.memberlogin(memberDTO);
+			memberDTO = memberDAO.memberLogin(memberDTO);
 			if(memberDTO!=null) {
 				actionForward.setPath("../index.do");
 				actionForward.setCheck(false);

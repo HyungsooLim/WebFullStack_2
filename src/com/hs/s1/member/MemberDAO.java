@@ -32,7 +32,7 @@ public class MemberDAO {
 	}
 
 	// login - id pw 받아 조회
-	public MemberDTO memberlogin(MemberDTO memberDTO) throws Exception {
+	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception {
 		String user = "user01";
 		String password = "user01";
 		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";

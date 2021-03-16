@@ -10,7 +10,7 @@
 	MemberDTO memberDTO = new MemberDTO();
 	memberDTO.setId(id);
 	memberDTO.setPw(pw);
-	memberDTO = memberDAO.login(memberDTO);
+	memberDTO = memberDAO.memberLogin(memberDTO);
 	String result = "로그인 실패";
 	if(memberDTO!=null){
 		result="로그인 성공";

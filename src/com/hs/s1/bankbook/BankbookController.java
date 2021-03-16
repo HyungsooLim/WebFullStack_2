@@ -1,6 +1,9 @@
 package com.hs.s1.bankbook;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,9 +32,21 @@ public class BankbookController extends HttpServlet {
 		//memberController 참조
 		String uri = request.getRequestURI();
 		int idx = uri.lastIndexOf("/");
-		String str = uri.substring(idx+1);
-		System.out.println(str);
-	}
+		String result = uri.substring(idx+1);
+		if(result.equals("bankList.do")) {
+			BankbookService bankbookService = new BankbookService();
+			try {
+				List<BankbookDTO> ar = bankbookService.getList();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		RequestDispatcher view = request.getRequestDispatcher("./bankbookList.jsp");
+		view.forward(request, response);
+		
+		
+	} // === doGet method END ===
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

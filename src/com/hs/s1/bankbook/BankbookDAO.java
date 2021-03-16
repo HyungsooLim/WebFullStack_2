@@ -5,12 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BankbookDAO {
 
 	//getList method
 	//bankbook table의 모든 데이터 조회 후 리턴
-	public void getList() throws Exception {
+	public List<BankbookDTO> getList() throws Exception {
 		String user="user01";
 		String password="user01";
 		String url="jdbc:oracle:thine:@127.0.0.1:1521:xe";
@@ -25,7 +26,15 @@ public class BankbookDAO {
 		while(rs.next()) {
 			BankbookDTO bankbookDTO = new BankbookDTO();
 			bankbookDTO.setBookNumber(rs.getInt("BOOKNUMBER"));
-			bankbook
+			bankbookDTO.setBookName(rs.getString("BOOKNAME"));
+			bankbookDTO.setBookRate(rs.getDouble("BOOKRATE"));
+			bankbookDTO.setBookSale(rs.getString("BOOKSALE"));
+			ar.add(bankbookDTO);
 		}
-	}
+		rs.close();
+		ps.close();
+		con.close();
+		
+		return ar;
+	} // === getList method END ===
 }
