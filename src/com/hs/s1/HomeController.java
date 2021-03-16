@@ -41,19 +41,19 @@ public class HomeController extends HttpServlet {
 		String servletPath = request.getServletPath();
 		String name = request.getParameter("파라미터이름");
 
-		System.out.println("ContextPath : " + contextPath);
-		System.out.println("Encoding : " + encoding);
-		System.out.println("Method : " + method);
-		System.out.println("PathInfo : " + pathInfo);
-		System.out.println("URL : " + url.toString());
-		System.out.println("URI : " + uri);
-		System.out.println("ServletPath : "+servletPath);
+//		System.out.println("ContextPath : " + contextPath);
+//		System.out.println("Encoding : " + encoding);
+//		System.out.println("Method : " + method);
+//		System.out.println("PathInfo : " + pathInfo);
+//		System.out.println("URL : " + url.toString());
+//		System.out.println("URI : " + uri);
+//		System.out.println("ServletPath : "+servletPath);
 
 		String id = request.getParameter("id");
 		String age = request.getParameter("age");
 
-		System.out.println(id);
-		System.out.println(age);
+//		System.out.println(id);
+//		System.out.println(age);
 
 		RequestDispatcher view = request.getRequestDispatcher("./index.jsp");
 		view.forward(request, response);
