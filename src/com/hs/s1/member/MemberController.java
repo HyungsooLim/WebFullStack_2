@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hs.s1.util.ActionFoward;
+import com.hs.s1.util.ActionForward;
 
 /**
  * Servlet implementation class MemberController
@@ -17,7 +17,7 @@ import com.hs.s1.util.ActionFoward;
 @WebServlet("/MemberController")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private MemberService memberService;
 
 	/**
@@ -34,7 +34,7 @@ public class MemberController extends HttpServlet {
 		MemberDAO memberDAO = new MemberDAO();
 		memberService.setMemberDAO(memberDAO);
 	}
-	
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -43,47 +43,48 @@ public class MemberController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("Member Controller");
-		
+
 		String uri = request.getRequestURI();
 		System.out.println(uri);
-		
-		String result="";
-		//subString
+
+		String result = "";
+		// subString
 		int idx = uri.lastIndexOf("/");
-		result = uri.substring(idx+1);
+		result = uri.substring(idx + 1);
 		System.out.println(result);
 		String pathInfo = "";
-		ActionFoward actionFoward=null;
-		
-		if(result.equals("memberLogin.do")) {
+		ActionForward actionForward = null;
+
+		if (result.equals("memberLogin.do")) {
 			try {
-				actionFoward=memberService.memberLogin(request);
+				actionForward = memberService.memberLogin(request);
 				System.out.println("로그인 성공");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-		}else if(result.equals("memberJoin.do")) {
+
+		} else if (result.equals("memberJoin.do")) {
 			try {
-				actionFoward =memberService.memberJoin(request);
+				actionForward = memberService.memberJoin(request);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-		}else {
+
+		} else {
 			System.out.println("그 외 다른 처리");
 		}
-		
-		//forward
-		RequestDispatcher view = request.getRequestDispatcher(actionFoward.getPath());
-		view.forward(request, response);
-		
-		
+
+		// forward
+		if(actionForward.isCheck()) {
+			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
+			view.forward(request, response);
+		}else {
+			//redirect
+			response.sendRedirect(actionForward.getPath());
+		}
+
 	}
 
 	/**
