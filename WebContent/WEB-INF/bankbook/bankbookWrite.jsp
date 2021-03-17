@@ -1,9 +1,4 @@
-<%@page import="com.hs.s1.bankbook.BankbookDTO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-List<BankbookDTO> ar = (List<BankbookDTO>) request.getAttribute("list");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +9,7 @@ List<BankbookDTO> ar = (List<BankbookDTO>) request.getAttribute("list");
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<title>bankbookList</title>
+<title>bankbookWrite</title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -40,30 +35,32 @@ List<BankbookDTO> ar = (List<BankbookDTO>) request.getAttribute("list");
 	</nav>
 	<div class="container">
 		<div class="row">
-			<h1>BankBook List</h1>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Rate</th>
-						<th>Sale</th>
-					</tr>
-				<thead>
-				<tbody>
-					<%
-					for (int i = 0; i < ar.size(); i++) {
-					%>
-					<tr>
-						<td><a href="./bankbookSelect.do?bookNumber=<%=ar.get(i).getBookNumber()%>"><%=ar.get(i).getBookName()%></a></td>
-						<td><%=ar.get(i).getBookRate()%></td>
-						<td><%=ar.get(i).getBookSale()%></td>
-					</tr>
-					<%
-					}
-					%>
-				</tbody>
-			</table>
-			<a href="./bankbookWrite.do" class="btn btn-danger">Write</a>
+			<h1>Bankbook Write Page</h1>
+			<form class="form-horizontal" action="./bankbookWrite.do" method="post">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="id">Book Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="bookName" placeholder="Enter Book Name" name="bookName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="pw">Book Rate:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="bookRate" placeholder="Enter Book Rate" name="bookRate">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sel1">Book Sale:</label> <select class="form-control" id="bookSale" name="bookSale">
+						<option>Y</option>
+						<option>N</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Submit</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

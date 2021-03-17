@@ -18,22 +18,31 @@ public class BankbookDAOTest {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+//		try {
+//			bankbookDTO.setBookNumber(1);
+//			bankbookDTO =bankbookDAO.getSelect(bankbookDTO);
+//			if(bankbookDTO!=null) {
+//				System.out.println(bankbookDTO.getBookNumber());
+//				System.out.println(bankbookDTO.getBookName());
+//				System.out.println(bankbookDTO.getBookRate());
+//				System.out.println(bankbookDTO.getBookSale());
+//			}else {
+//				System.out.println("검색 결과 없음");
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		try {
-			bankbookDTO.setBookNumber(1);
-			bankbookDTO =bankbookDAO.getSelect(bankbookDTO);
-			if(bankbookDTO!=null) {
-				System.out.println(bankbookDTO.getBookNumber());
-				System.out.println(bankbookDTO.getBookName());
-				System.out.println(bankbookDTO.getBookRate());
-				System.out.println(bankbookDTO.getBookSale());
-			}else {
-				System.out.println("검색 결과 없음");
-			}
+			bankbookDTO.setBookName("주택청약");
+			bankbookDTO.setBookRate(0.18);
+			bankbookDTO.setBookSale("Y");
+			int result=bankbookDAO.setWrite(bankbookDTO);
+			System.out.println(result==1);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		
 	}

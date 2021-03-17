@@ -42,5 +42,23 @@ public class BankbookService {
 		
 		return actionForward;
 	} // === getSelect method END ===
+	
+	public ActionForward setWrite(HttpServletRequest request) throws Exception {
+		System.out.println("---Service 접속 성공---");
+		String method = request.getMethod();
+		actionForward.setPath("../bankbook/bankbookWrite.jsp");
+		actionForward.setCheck(true);
+		if(method.equals("POST")) {
+			BankbookDTO bankbookDTO = new BankbookDTO();
+			bankbookDTO.setBookName(request.getParameter("bookName"));
+			bankbookDTO.setBookRate(Double.parseDouble(request.getParameter("bookRate")));
+			bankbookDTO.setBookSale(request.getParameter("bookSale"));
+			int result = bankbookDAO.setWrite(bankbookDTO);
+			actionForward.setPath("./bankbookList.do");
+			actionForward.setCheck(false);
+		}
+		
+		return actionForward;
+	} // === setWrite method END ===
 
 }

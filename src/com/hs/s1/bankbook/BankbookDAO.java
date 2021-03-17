@@ -67,4 +67,24 @@ public class BankbookDAO {
 
 		return bankbookDTO;
 	}// === getSelect method END ===
+	
+	public int setWrite(BankbookDTO bankbookDTO) throws Exception{
+		Connection con = connect.getConnection();
+		String sql = "insert into BANKBOOK\n"
+				+ "values(bankbook_seq.nextval, ?, ?, ?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, bankbookDTO.getBookName());
+		ps.setDouble(2, bankbookDTO.getBookRate());
+		ps.setString(3, bankbookDTO.getBookSale());
+		int result = ps.executeUpdate();
+		
+		if(result==0) {
+			bankbookDTO=null;
+		}
+		
+		ps.close();
+		con.close();
+		
+		return result;
+	}
 }

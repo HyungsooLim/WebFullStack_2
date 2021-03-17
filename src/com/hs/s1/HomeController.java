@@ -30,6 +30,9 @@ public class HomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		// TODO Auto-generated method stub
 
 		String contextPath = request.getContextPath();
@@ -55,7 +58,7 @@ public class HomeController extends HttpServlet {
 //		System.out.println(id);
 //		System.out.println(age);
 
-		RequestDispatcher view = request.getRequestDispatcher("./index.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("./WEB-INF/index.jsp");
 		view.forward(request, response);
 	}
 
