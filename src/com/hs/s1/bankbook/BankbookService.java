@@ -46,9 +46,9 @@ public class BankbookService {
 	public ActionForward setWrite(HttpServletRequest request) throws Exception {
 		System.out.println("---Service 접속 성공---");
 		String method = request.getMethod();
-		actionForward.setPath("../bankbook/bankbookWrite.jsp");
+		actionForward.setPath("../WEB-INF/bankbook/bankbookWrite.jsp");
 		actionForward.setCheck(true);
-		if(method.equals("POST")) {
+		if(method.toUpperCase().equals("POST")) {
 			BankbookDTO bankbookDTO = new BankbookDTO();
 			bankbookDTO.setBookName(request.getParameter("bookName"));
 			bankbookDTO.setBookRate(Double.parseDouble(request.getParameter("bookRate")));

@@ -50,7 +50,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="sel1">Book Sale:</label> <select class="form-control" id="bookSale" name="bookSale">
+					<label for="sel1">Book Sale:</label>
+					<select class="form-control" id="bookSale" name="bookSale">
 						<option>Y</option>
 						<option>N</option>
 					</select>
