@@ -52,7 +52,6 @@ public class MemberController extends HttpServlet {
 		int idx = uri.lastIndexOf("/");
 		result = uri.substring(idx + 1);
 		System.out.println(result);
-		String pathInfo = "";
 		ActionForward actionForward = null;
 
 		if (result.equals("memberLogin.do")) {

@@ -14,7 +14,7 @@ public class BankbookDAO {
 	public List<BankbookDTO> getList() throws Exception {
 		String user="user01";
 		String password="user01";
-		String url="jdbc:oracle:thine:@127.0.0.1:1521:xe";
+		String url="jdbc:oracle:thin:@127.0.0.1:1521:xe";
 		String driver="oracle.jdbc.driver.OracleDriver";
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url, user, password);
@@ -25,7 +25,7 @@ public class BankbookDAO {
 		ArrayList<BankbookDTO> ar = new ArrayList<>();
 		while(rs.next()) {
 			BankbookDTO bankbookDTO = new BankbookDTO();
-			bankbookDTO.setBookNumber(rs.getInt("BOOKNUMBER"));
+			bankbookDTO.setBookNumber(rs.getLong("BOOKNUMBER"));
 			bankbookDTO.setBookName(rs.getString("BOOKNAME"));
 			bankbookDTO.setBookRate(rs.getDouble("BOOKRATE"));
 			bankbookDTO.setBookSale(rs.getString("BOOKSALE"));

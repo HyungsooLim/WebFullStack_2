@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
+<%@page import="com.hs.s1.bankbook.BankbookDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+List<BankbookDTO> ar = (List<BankbookDTO>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +39,31 @@
 		</div>
 	</nav>
 	<div class="container">
-		<!-- 출력 -->
-		<%= %>
+		<div class="row">
+			<h1>BankBook List</h1>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Rate</th>
+						<th>Sale</th>
+					</tr>
+				<thead>
+				<tbody>
+					<%
+					for (int i = 0; i < ar.size(); i++) {
+					%>
+					<tr>
+						<td><%=ar.get(i).getBookName()%></td>
+						<td><%=ar.get(i).getBookRate()%></td>
+						<td><%=ar.get(i).getBookSale()%></td>
+					</tr>
+					<%
+					}
+					%>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

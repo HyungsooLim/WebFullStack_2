@@ -2,16 +2,16 @@ package com.hs.s1.bankbook;
 
 public class BankbookDTO {
 
-	private int bookNumber;
+	private long bookNumber;
 	private String bookName;
 	private double bookRate;
 	private String bookSale;
 
-	public int getBookNumber() {
+	public long getBookNumber() {
 		return bookNumber;
 	}
 
-	public void setBookNumber(int bookNumber) {
+	public void setBookNumber(long bookNumber) {
 		this.bookNumber = bookNumber;
 	}
 

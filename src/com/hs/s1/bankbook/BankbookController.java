@@ -1,7 +1,6 @@
 package com.hs.s1.bankbook;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,48 +9,67 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hs.s1.util.ActionForward;
+
 /**
  * Servlet implementation class BankbookController
  */
 @WebServlet("/BankbookController")
 public class BankbookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BankbookController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private BankbookService bankbookService;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//memberController 참조
+	public BankbookController() {
+		super();
+	}
+
+	@Override
+	public void init() throws ServletException {
+		// Controller 객체 생성 후 자동 호출 되는 초기화 메서드
+		bankbookService = new BankbookService();
+		BankbookDAO bankbookDAO = new BankbookDAO();
+		bankbookService.setBankbookDAO(bankbookDAO);
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// memberController 참조
 		String uri = request.getRequestURI();
 		int idx = uri.lastIndexOf("/");
-		String result = uri.substring(idx+1);
-		if(result.equals("bankList.do")) {
-			BankbookService bankbookService = new BankbookService();
-			try {
-				List<BankbookDTO> ar = bankbookService.getList();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		uri = uri.substring(idx + 1);
+		BankbookService bankbookService = new BankbookService();
+		ActionForward actionForward = null;
+		try {
+			if (uri.equals("bankbookList.do")) {
+				actionForward = bankbookService.getList(request);
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		RequestDispatcher view = request.getRequestDispatcher("./bankbookList.jsp");
-		view.forward(request, response);
-		
-		
+		// forward, redirect
+		if (actionForward.isCheck()) {
+			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
+			view.forward(request, response);
+		} else {
+			response.sendRedirect(actionForward.getPath());
+		}
+
 	} // === doGet method END ===
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
