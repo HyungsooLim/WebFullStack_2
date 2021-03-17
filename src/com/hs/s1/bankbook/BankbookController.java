@@ -44,11 +44,12 @@ public class BankbookController extends HttpServlet {
 		String uri = request.getRequestURI();
 		int idx = uri.lastIndexOf("/");
 		uri = uri.substring(idx + 1);
-		BankbookService bankbookService = new BankbookService();
 		ActionForward actionForward = null;
 		try {
 			if (uri.equals("bankbookList.do")) {
 				actionForward = bankbookService.getList(request);
+			} else if (uri.equals("bankbookSelect.do")) {
+				actionForward = bankbookService.getSelect(request);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
