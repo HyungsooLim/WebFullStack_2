@@ -1,4 +1,4 @@
-<%@page import="com.hs.s3.bankbook.BankbookDTO"%>
+<%@page import="com.hs.s1.bankbook.BankbookDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
